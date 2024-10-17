@@ -23,16 +23,16 @@ def get_ip_address(ifname):
         )[20:24])
 
 def get_argparser():
-    parser = argparse.ArgumentParser(description='Hammer a router-plus-portal'
+    parser = argparse.ArgumentParser(description='Hammer a wifidog'
                                      + ' instance with requests')
     parser.add_argument(
         '--target-interface',
         required=True,
-        help='Interface where router-plus-portal is listening')
+        help='Interface where wifidog is listening')
     parser.add_argument(
         '--source-interface-prefix',
         required=True,
-        help='Prefix of the virtual interfaces from which router-plus-portal' +
+        help='Prefix of the virtual interfaces from which wifidog' +
         ' is exercised.')
     parser.add_argument(
         '--source-interface-count',

@@ -459,7 +459,7 @@ httpdReadRequest(httpd * server, request * r)
                     }
                 }
             }
-            /* acv@acv.ca/router-plus-portal: Added decoding of host: if
+            /* acv@acv.ca/wifidog: Added decoding of host: if
              * present. */
             if (strncasecmp(buf, "Host: ", 6) == 0) {
                 cp = strchr(buf, ':');

@@ -238,7 +238,7 @@ fw_set_authservers(void)
 }
 
 /** Remove the firewall rules
- * This is used when we do a clean shutdown of router-plus-portal.
+ * This is used when we do a clean shutdown of wifidog.
  * @return Return code of the fw.destroy script
  */
 int

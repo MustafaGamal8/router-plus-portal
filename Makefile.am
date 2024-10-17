@@ -4,7 +4,7 @@ AUTOMAKE_OPTIONS = foreign
 
 SUBDIRS = libhttpd src . doc 
 
-docdir = ${prefix}/share/doc/router-plus-portal-@VERSION@
+docdir = ${prefix}/share/doc/wifidog-@VERSION@
 
 doc_DATA = \
   AUTHORS \
@@ -15,12 +15,12 @@ doc_DATA = \
   
 EXTRA_DIST = \
   FAQ \
-  router-plus-portal.spec.in \
-  router-plus-portal.spec \
+  wifidog.spec.in \
+  wifidog.spec \
   config \
   scripts \
   contrib \
-  router-plus-portal.conf
+  wifidog.conf
 
 .PHONY: doc
 doc:

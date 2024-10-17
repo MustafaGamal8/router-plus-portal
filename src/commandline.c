@@ -43,7 +43,7 @@
 char ** restartargv = NULL;
 
 /**
- * A flag to denote whether we were restarted via a parent router-plus-portal, or started normally
+ * A flag to denote whether we were restarted via a parent wifidog, or started normally
  * 0 means normally, otherwise it will be populated by the PID of the parent
  */
 pid_t restart_orig_pid = 0;
@@ -53,12 +53,12 @@ static void usage(void);
 /** @internal
  * @brief Print usage
  *
- * Prints usage, called when router-plus-portal is run with -h or with an unknown option
+ * Prints usage, called when wifidog is run with -h or with an unknown option
  */
 static void
 usage(void)
 {
-    fprintf(stdout, "Usage: router-plus-portal [options]\n");
+    fprintf(stdout, "Usage: wifidog [options]\n");
     fprintf(stdout, "\n");
     fprintf(stdout, "options:\n");
     fprintf(stdout, "  -c [filename] Use this config file\n");
@@ -69,7 +69,7 @@ usage(void)
     fprintf(stdout, "  -h            Print usage\n");
     fprintf(stdout, "  -v            Print version information\n");
     fprintf(stdout,
-            "  -x pid        Used internally by router-plus-portal when re-starting itself *DO NOT ISSUE THIS SWITCH MANUAlLY*\n");
+            "  -x pid        Used internally by wifidog when re-starting itself *DO NOT ISSUE THIS SWITCH MANUAlLY*\n");
     fprintf(stdout, "  -i <path>     Internal socket path used when re-starting self\n");
     fprintf(stdout, "  -a <path>     Path to /proc/net/arp replacement - mainly useful for debugging.\n");
     fprintf(stdout, "  -p <path>     Save pid to file\n");
@@ -135,7 +135,7 @@ parse_commandline(int argc, char **argv)
             break;
 
         case 'v':
-            fprintf(stdout, "This is router-plus-portal version " VERSION "\n");
+            fprintf(stdout, "This is wifidog version " VERSION "\n");
             exit(1);
             break;
 
@@ -170,7 +170,7 @@ parse_commandline(int argc, char **argv)
                 free(config->pidfile);
                 config->pidfile = safe_strdup(optarg);
             } else {
-                fprintf(stdout, "The expected PID file path to the router-plus-portal was not supplied!\n");
+                fprintf(stdout, "The expected PID file path to the wifidog was not supplied!\n");
                 exit(1);
             }
             break;

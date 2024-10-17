@@ -554,7 +554,7 @@ _parse_firewall_rule(const char *ruleset, char *leftover)
             if (!isdigit((unsigned char)*(port + i)) && ((unsigned char)*(port + i) != ':'))
                 all_nums = 0;   /*< No longer only digits */
         if (!all_nums) {
-            debug(LOG_ERR, "ERROR: router-plus-portal config file, section FirewallRuleset %s. " "Invalid port %s", ruleset, port);
+            debug(LOG_ERR, "ERROR: wifidog config file, section FirewallRuleset %s. " "Invalid port %s", ruleset, port);
             return -3;          /*< Fail */
         }
     }
@@ -890,7 +890,7 @@ parse_trusted_mac_list(const char *ptr)
         /* check for valid format */
         if (!check_mac_format(possiblemac)) {
             debug(LOG_ERR,
-                  "[%s] not a valid MAC address to trust. See option TrustedMACList in router-plus-portal.conf for correct this mistake.",
+                  "[%s] not a valid MAC address to trust. See option TrustedMACList in wifidog.conf for correct this mistake.",
                   possiblemac);
             free(ptrcopy);
             free(mac);
@@ -929,7 +929,7 @@ parse_trusted_mac_list(const char *ptr)
                         p->next = NULL;
                     } else {
                         debug(LOG_ERR,
-                              "MAC address [%s] already on trusted list. See option TrustedMACList in router-plus-portal.conf file ",
+                              "MAC address [%s] already on trusted list. See option TrustedMACList in wifidog.conf file ",
                               mac);
                     }
                 }

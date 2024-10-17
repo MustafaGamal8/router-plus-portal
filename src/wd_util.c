@@ -168,7 +168,7 @@ get_status_text()
     unsigned int days = 0, hours = 0, minutes = 0, seconds = 0;
     t_trusted_mac *p;
 
-    pstr_cat(pstr, "router-plus-portal status\n\n");
+    pstr_cat(pstr, "wifidog status\n\n");
 
     uptime = time(NULL) - started_time;
     days = (unsigned int)uptime / (24 * 60 * 60);

@@ -1,9 +1,9 @@
-Source: router-plus-portal
+Source: wifidog
 Section: net
 Priority: optional
 Maintainer: Philippe April <philippe@ilesansfil.org>
 
-Package: router-plus-portal
+Package: wifidog
 Architecture: any
 Depends: iptables, modutils, grep, mawk | awk
 Provides: libhttpd

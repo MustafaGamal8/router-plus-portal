@@ -1,6 +1,6 @@
 SUBDIRS =
 
-docdir = ${prefix}/share/doc/router-plus-portal-@VERSION@
+docdir = ${prefix}/share/doc/wifidog-@VERSION@
 
 EXTRA_DIST = \
 	doxygen.cfg \

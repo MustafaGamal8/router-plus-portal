@@ -20,7 +20,7 @@
 
 /* $Id$ */
 /** @file httpd_thread.h
-    @brief router-plus-portal httpd worker thread
+    @brief wifidog httpd worker thread
     @author Copyright (C) 2004 Alexandre Carmel-Veilleux <acv@acv.ca>
 */
 

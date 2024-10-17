@@ -2,23 +2,23 @@
 $Id$
 
 
-This file contains some small notes on developing the router-plus-portal application.
+This file contains some small notes on developing the wifidog application.
 
 
 The application's GitHub page is:
-	https://github.com/router-plus-portal/
+	https://github.com/wifidog/
 
 As a developer, you should subscribe to the GitHub project:
-	https://github.com/router-plus-portal/router-plus-portal-gateway/subscription
+	https://github.com/wifidog/wifidog-gateway/subscription
 
 Main development is happening on GitHub, but the project website has lots of useful information
 and some remaining tickets:
-	http://dev.router-plus-portal.org/
+	http://dev.wifidog.org/
 
 There is also a (somewhat unused) SourceForge page:
-	http://sourceforge.net/projects/router-plus-portal/
+	http://sourceforge.net/projects/wifidog/
 
-router-plus-portal uses semantic versioning:
+wifidog uses semantic versioning:
 	http://semver.org/
 
 
@@ -30,15 +30,15 @@ A quick checklist for new contributors. See below for details.
 	- Fix all compiler warnings
 
 Once your patch is good to go, submit a pull request on GitHub:
-	https://github.com/router-plus-portal/router-plus-portal-gateway/pulls
+	https://github.com/wifidog/wifidog-gateway/pulls
 
 If you're having any questions, file an issue on GitHub and add the "Question"
 label:
-	https://github.com/router-plus-portal/router-plus-portal-gateway/issues/new
+	https://github.com/wifidog/wifidog-gateway/issues/new
 
 SOURCE CODE:
 	- Please do not contribute unless you agree with the GPL license and are contributing your portion under that license.  See the included LICENSE.txt
-	- Please respect the intellectual property of others.  You are not allowed to taint router-plus-portal by including source code from projects that do not allow so.
+	- Please respect the intellectual property of others.  You are not allowed to taint wifidog by including source code from projects that do not allow so.
 	- Keep in mind that this application will run on extremely simple embedded devices.  The binary size needs to be small, the dependencies absolutely minimal, and the memory footprint negligible.
 	- Since this is a collaborative project, please aim for clearness instead of cleverness when faced with a choice.
 	- If you must use some cleverness, please add appropriate clear comments.

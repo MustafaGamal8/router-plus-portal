@@ -48,7 +48,7 @@ void mark_auth_offline(void);
 /** @brief Returns a guess (true or false) on whether we're an auth server is online or not based on previous calls to mark_auth_online and mark_auth_offline */
 int is_auth_online(void);
 
-/** @brief Creates a human-readable paragraph of the status of router-plus-portal */
+/** @brief Creates a human-readable paragraph of the status of wifidog */
 char *get_status_text(void);
 
 #endif /* _WD_UTIL_H_ */

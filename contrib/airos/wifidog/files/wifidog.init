@@ -13,15 +13,15 @@ plugin_start() {
   insmod iptable_nat
   insmod iptable_filter
 
- # echo "Starting router-plus-portal: " 
+ # echo "Starting wifidog: " 
 	
-  #/usr/bin/router-plus-portal-init start
+  #/usr/bin/wifidog-init start
   echo
   true
 }
 plugin_stop() {
-  killall router-plus-portal
- #/usr/bin/router-plus-portal-init stop
+  killall wifidog
+ #/usr/bin/wifidog-init stop
   true
 }
 

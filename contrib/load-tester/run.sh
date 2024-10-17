@@ -14,7 +14,7 @@ function main() {
     ulimit -c unlimited
 
     COUNT=40
-    echo "Make sure to configure GatewayInterface in router-plus-portal_mock.conf"
+    echo "Make sure to configure GatewayInterface in wifidog_mock.conf"
 
     ./generate_interfaces.sh start $COUNT || exit 1
 
@@ -22,27 +22,27 @@ function main() {
     MA_PID="$!"
 
     # work around libtool stuff - do not execute wrapper!
-    #EXEC="../../src/.libs/router-plus-portal"
+    #EXEC="../../src/.libs/wifidog"
     #export LD_LIBRARY_PATH="../../libhttpd/.libs/"
     # trace-children is necessary because of the libtool wrapper -.-
     #valgrind --leak-check=full --trace-children=yes --trace-children-skip=/bin/sh \
-    #    --log-file=valgrind.log $EXEC -d 7 -f -c router-plus-portal-mock.conf -a /tmp/arp 2> router-plus-portal.log &
+    #    --log-file=valgrind.log $EXEC -d 7 -f -c wifidog-mock.conf -a /tmp/arp 2> wifidog.log &
 
     # for -fsanitize=address
     export ASAN_OPTIONS=check_initialization_order=1
     export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-3.5
 
 
-    ../../src/router-plus-portal -d 7 -f -c router-plus-portal-mock.conf -a /tmp/arp &> router-plus-portal.log &
+    ../../src/wifidog -d 7 -f -c wifidog-mock.conf -a /tmp/arp &> wifidog.log &
     WD_PID="$!"
 
 
     sudo -u "$SUDO_USER" ./plot_memory.sh $WD_PID &
     M_PID="$!"
 
-    IF=`sudo -u "$SUDO_USER" grep GatewayInterface router-plus-portal-mock.conf | cut -f 2 -d ' '`
+    IF=`sudo -u "$SUDO_USER" grep GatewayInterface wifidog-mock.conf | cut -f 2 -d ' '`
 
-    echo "Waiting for router-plus-portal to come up"
+    echo "Waiting for wifidog to come up"
 
     sleep 10
 

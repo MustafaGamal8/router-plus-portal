@@ -7,7 +7,7 @@ fi
 
 if [[ "$BUILD_TYPE" == "normal" ]]; then
 
-    echo "Running router-plus-portal configure"
+    echo "Running wifidog configure"
     ./configure $@
 
 elif [[ "$BUILD_TYPE" == "cyassl" ]]; then
@@ -47,7 +47,7 @@ elif [[ "$BUILD_TYPE" == "cyassl" ]]; then
     else
         echo "Cached CyaSSL install found."
     fi
-    echo "Running router-plus-portal configure"
+    echo "Running wifidog configure"
     export CFLAGS="-I${CUR}/dependencies-installed/include/"
     export LDFLAGS="-L${CUR}/dependencies-installed/lib/"
     ./configure --enable-cyassl $@

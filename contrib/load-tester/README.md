@@ -1,10 +1,10 @@
-## router-plus-portal Load Tester ##
+## wifidog Load Tester ##
 
 * generate\_interfaces.sh: Sets up pseudo interfaces and creates a fake ARP
   table in /tmp/arp. Make sure that the IP addresses used do not collide with
   your real network
 * mock\_auth.py: A mock auth server. Randomly grants or denies access
-* fire\_requests.py: Hammers router-plus-portal with requests. talks to router-plus-portal, never
+* fire\_requests.py: Hammers wifidog with requests. talks to wifidog, never
   to the auth server.
 * run.sh: Ties it all together. Make sure to run as root. 
 
@@ -19,8 +19,8 @@ to the virtual interfaces, these will not show up in the local
 ARP table. The ARP table only lists remote systems. Even with the
 **publish** flag set, the ARP table entry will list an all-zero MAC
 address. For this reason, the script generates a fake ARP table
-and passes it to router-plus-portal with the **-a** switch.
+and passes it to wifidog with the **-a** switch.
 
 The macvlan type virtual interface used by generate\_interfaces.sh
-is still useful if you load-test a remote router-plus-portal instance. In this case,
+is still useful if you load-test a remote wifidog instance. In this case,
 the remote ARP table will (hopefully) be populated correctly.

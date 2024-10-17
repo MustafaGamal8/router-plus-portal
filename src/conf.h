@@ -33,30 +33,30 @@
 
 /** Defaults configuration values */
 #ifndef SYSCONFDIR
-#define DEFAULT_CONFIGFILE "/etc/router-plus-portal.conf"
-#define DEFAULT_HTMLMSGFILE "/etc/router-plus-portal-msg.html"
+#define DEFAULT_CONFIGFILE "/etc/wifidog.conf"
+#define DEFAULT_HTMLMSGFILE "/etc/wifidog-msg.html"
 #else
-#define DEFAULT_CONFIGFILE SYSCONFDIR"/router-plus-portal.conf"
-#define DEFAULT_HTMLMSGFILE SYSCONFDIR"/router-plus-portal-msg.html"
+#define DEFAULT_CONFIGFILE SYSCONFDIR"/wifidog.conf"
+#define DEFAULT_HTMLMSGFILE SYSCONFDIR"/wifidog-msg.html"
 #endif
 #define DEFAULT_DAEMON 1
 #define DEFAULT_DEBUGLEVEL LOG_INFO
 #define DEFAULT_HTTPDMAXCONN 10
 #define DEFAULT_GATEWAYID NULL
 #define DEFAULT_GATEWAYPORT 2060
-#define DEFAULT_HTTPDNAME "router-plus-portal"
+#define DEFAULT_HTTPDNAME "wifidog"
 #define DEFAULT_CLIENTTIMEOUT 5
 #define DEFAULT_CHECKINTERVAL 60
 #define DEFAULT_LOG_SYSLOG 0
 #define DEFAULT_SYSLOG_FACILITY LOG_DAEMON
 #define DEFAULT_WDCTL_SOCK "/tmp/wdctl.sock"
-#define DEFAULT_INTERNAL_SOCK "/tmp/router-plus-portal.sock"
+#define DEFAULT_INTERNAL_SOCK "/tmp/wifidog.sock"
 #define DEFAULT_AUTHSERVPORT 80
 #define DEFAULT_AUTHSERVSSLPORT 443
 /** Note that DEFAULT_AUTHSERVSSLAVAILABLE must be 0 or 1, even if the config file syntax is yes or no */
 #define DEFAULT_AUTHSERVSSLAVAILABLE 0
 /** Note:  The path must be prefixed by /, and must be suffixed /.  Put / for the server root.*/
-#define DEFAULT_AUTHSERVPATH "/router-plus-portal/"
+#define DEFAULT_AUTHSERVPATH "/wifidog/"
 #define DEFAULT_AUTHSERVLOGINPATHFRAGMENT "login/?"
 #define DEFAULT_AUTHSERVPORTALPATHFRAGMENT "portal/?"
 #define DEFAULT_AUTHSERVMSGPATHFRAGMENT "gw_message.php?"
@@ -90,12 +90,12 @@ extern pthread_mutex_t config_mutex;
  */
 typedef struct _auth_serv_t {
     char *authserv_hostname;    /**< @brief Hostname of the central server */
-    char *authserv_path;        /**< @brief Path where router-plus-portal resides */
+    char *authserv_path;        /**< @brief Path where wifidog resides */
     char *authserv_login_script_path_fragment;  /**< @brief This is the script the user will be sent to for login. */
     char *authserv_portal_script_path_fragment; /**< @brief This is the script the user will be sent to after a successfull login. */
     char *authserv_msg_script_path_fragment;    /**< @brief This is the script the user will be sent to upon error to read a readable message. */
     char *authserv_ping_script_path_fragment;   /**< @brief This is the ping heartbeating script. */
-    char *authserv_auth_script_path_fragment;   /**< @brief This is the script that talks the router-plus-portal gateway protocol. */
+    char *authserv_auth_script_path_fragment;   /**< @brief This is the script that talks the wifidog gateway protocol. */
     int authserv_http_port;     /**< @brief Http port the central server
 				     listens on */
     int authserv_ssl_port;      /**< @brief Https port the central server
@@ -163,7 +163,7 @@ typedef struct {
     char *internal_sock;                /**< @brief internal path to socket */
     int deltatraffic;                   /**< @brief reset each user's traffic (Outgoing and Incoming) value after each Auth operation. */
     int daemon;                 /**< @brief if daemon > 0, use daemon mode */
-    char *pidfile;            /**< @brief pid file path of router-plus-portal */
+    char *pidfile;            /**< @brief pid file path of wifidog */
     char *external_interface;   /**< @brief External network interface name for
 				     firewall rules */
     char *gw_id;                /**< @brief ID of the Gateway, sent to central

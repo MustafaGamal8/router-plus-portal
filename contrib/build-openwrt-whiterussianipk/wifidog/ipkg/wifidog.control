@@ -1,8 +1,8 @@
-Package: router-plus-portal
+Package: wifidog
 Priority: optional
 Section: net
 Depends: libpthread, iptables, iptables-mod-nat, iptables-mod-ipopt
-Description: router-plus-portal is a complete and embeddable captive portal
+Description: wifidog is a complete and embeddable captive portal
         solution for wireless community groups or individuals who
         wish to open a free Hotspot while still preventing abuse
         of their Internet connection.

@@ -1,6 +1,6 @@
 # $Id$
 
-%define name router-plus-portal
+%define name wifidog
 %define lib_name libhttpd
 %define version @VERSION@
 %define release 1mdk
@@ -9,7 +9,7 @@ Summary: The WiFi Guard Dog project is a complete and embeedable captive portal 
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source: http://download.sourceforge.net/router-plus-portal/%{name}-%{version}.tar.gz
+Source: http://download.sourceforge.net/wifidog/%{name}-%{version}.tar.gz
 Group: Applications/System
 License: GPL
 BuildRoot: %{_tmppath}/%{name}-%{version}-root
@@ -32,16 +32,16 @@ mkdir -p $RPM_BUILD_ROOT%{_prefix}
 
 # Will this overide previous config file?
 mkdir -p $RPM_BUILD_ROOT/etc
-cp router-plus-portal.conf $RPM_BUILD_ROOT/etc
+cp wifidog.conf $RPM_BUILD_ROOT/etc
 mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d
-cp scripts/init.d/router-plus-portal $RPM_BUILD_ROOT/etc/rc.d/init.d
-chmod +x $RPM_BUILD_ROOT/etc/rc.d/init.d/router-plus-portal
+cp scripts/init.d/wifidog $RPM_BUILD_ROOT/etc/rc.d/init.d
+chmod +x $RPM_BUILD_ROOT/etc/rc.d/init.d/wifidog
 
 %makeinstall
 
 %post
 /sbin/ldconfig
-%_post_service router-plus-portal
+%_post_service wifidog
 
 %postun
 /sbin/ldconfig
@@ -53,8 +53,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,0755)
 %doc AUTHORS COPYING ChangeLog INSTALL NEWS README FAQ doc/html
-%config /etc/router-plus-portal.conf 
-%config /etc/rc.d/init.d/router-plus-portal
+%config /etc/wifidog.conf 
+%config /etc/rc.d/init.d/wifidog
 %{_bindir}/*
 %{_libdir}/*.a
 %{_libdir}/*.la

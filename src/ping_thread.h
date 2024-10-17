@@ -21,7 +21,7 @@
 
 /* $Id$ */
 /** @file ping_thread.h
-    @brief router-plus-portal heartbeat thread
+    @brief wifidog heartbeat thread
     @author Copyright (C) 2004 Alexandre Carmel-Veilleux <acv@miniguru.ca>
 */
 

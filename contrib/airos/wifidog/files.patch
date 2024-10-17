@@ -5,7 +5,7 @@
  mkdir -p /etc/rc.d /etc/init.d
  # forced update
 -for f in inittab rc.d/rc.sysinit rc.d/rc rc.d/rc.stop ppp; do
-+for f in inittab rc.d/rc.sysinit rc.d/rc rc.d/rc.stop ppp router-plus-portal.conf router-plus-portal-msg.html ; do
++for f in inittab rc.d/rc.sysinit rc.d/rc rc.d/rc.stop ppp wifidog.conf wifidog-msg.html ; do
          cp -f -r /usr/etc/$f /etc/$f
  done
  echo "...base ok"
@@ -13,11 +13,11 @@
  	/sbin/ubntconf
  fi
  
-+#adding router-plus-portal to startup programs
-+if [ -f /usr/etc/init.d/router-plus-portal ]; then
-+	cp -f /usr/etc/init.d/router-plus-portal /etc/sysinit/router-plus-portal.conf
-+	echo "null::respawn:/usr/bin/router-plus-portal -f" >> /etc/inittab
-+	echo "router-plus-portal" >> /etc/startup.list
++#adding wifidog to startup programs
++if [ -f /usr/etc/init.d/wifidog ]; then
++	cp -f /usr/etc/init.d/wifidog /etc/sysinit/wifidog.conf
++	echo "null::respawn:/usr/bin/wifidog -f" >> /etc/inittab
++	echo "wifidog" >> /etc/startup.list
 +fi
 +
 +
@@ -31,11 +31,11 @@
  	fi
  fi
 +
-+#adding router-plus-portal to startup programs
-+if [ -f /usr/etc/init.d/router-plus-portal ]; then
-+	cp -f /usr/etc/init.d/router-plus-portal /etc/sysinit/router-plus-portal.conf
-+	echo "null::respawn:/usr/bin/router-plus-portal -f" >> /etc/inittab
-+	echo "router-plus-portal" >> /etc/startup.list
++#adding wifidog to startup programs
++if [ -f /usr/etc/init.d/wifidog ]; then
++	cp -f /usr/etc/init.d/wifidog /etc/sysinit/wifidog.conf
++	echo "null::respawn:/usr/bin/wifidog -f" >> /etc/inittab
++	echo "wifidog" >> /etc/startup.list
 +fi
 
 --- SDK.UBNT.v5.2.clean/openwrt/.config	2010-05-18 05:03:40.000000000 -0400
@@ -62,7 +62,7 @@
  #
  # Network
  #
-+CONFIG_PACKAGE_router-plus-portal=y
++CONFIG_PACKAGE_wifidog=y
  
  #
  # Monitoring

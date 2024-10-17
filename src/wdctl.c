@@ -20,7 +20,7 @@
 
 /* $Id$ */
 /** @file wdctl.c
-    @brief Monitoring and control of router-plus-portal, client part
+    @brief Monitoring and control of wifidog, client part
     @author Copyright (C) 2004 Alexandre Carmel-Veilleux <acv@acv.ca>
 */
 
@@ -68,9 +68,9 @@ usage(void)
     fprintf(stdout, "\n");
     fprintf(stdout, "commands:\n");
     fprintf(stdout, "  reset [mac|ip]    Reset the specified mac or ip connection\n");
-    fprintf(stdout, "  status            Obtain the status of router-plus-portal\n");
-    fprintf(stdout, "  stop              Stop the running router-plus-portal\n");
-    fprintf(stdout, "  restart           Re-start the running router-plus-portal (without disconnecting active users!)\n");
+    fprintf(stdout, "  status            Obtain the status of wifidog\n");
+    fprintf(stdout, "  stop              Stop the running wifidog\n");
+    fprintf(stdout, "  restart           Re-start the running wifidog (without disconnecting active users!)\n");
     fprintf(stdout, "\n");
 }
 
@@ -160,7 +160,7 @@ connect_to_server(const char *sock_name)
     strncpy(sa_un.sun_path, sock_name, (sizeof(sa_un.sun_path) - 1));
 
     if (connect(sock, (struct sockaddr *)&sa_un, strlen(sa_un.sun_path) + sizeof(sa_un.sun_family))) {
-        fprintf(stderr, "wdctl: router-plus-portal probably not started (Error: %s)\n", strerror(errno));
+        fprintf(stderr, "wdctl: wifidog probably not started (Error: %s)\n", strerror(errno));
         exit(1);
     }
 
@@ -177,7 +177,7 @@ send_request(int sock, const char *request)
     while (len != strlen(request)) {
         written = write(sock, (request + len), strlen(request) - len);
         if (written == -1) {
-            fprintf(stderr, "Write to router-plus-portal failed: %s\n", strerror(errno));
+            fprintf(stderr, "Write to wifidog failed: %s\n", strerror(errno));
             exit(1);
         }
         len += (size_t) written;
@@ -261,7 +261,7 @@ wdctl_reset(void)
     } else if (strcmp(buffer, "No") == 0) {
         fprintf(stdout, "Connection %s was not active.\n", config.param);
     } else {
-        fprintf(stderr, "wdctl: Error: router-plus-portal sent an abnormal " "reply.\n");
+        fprintf(stderr, "wdctl: Error: wifidog sent an abnormal " "reply.\n");
     }
 
     shutdown(sock, 2);

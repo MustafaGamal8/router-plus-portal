@@ -34,7 +34,7 @@
 extern char **restartargv;
 
 /**
- * A flag to denote whether we were restarted via a parent router-plus-portal, or started normally
+ * A flag to denote whether we were restarted via a parent wifidog, or started normally
  * 0 means normally, otherwise it will be populated by the PID of the parent
  */
 extern pid_t restart_orig_pid;
