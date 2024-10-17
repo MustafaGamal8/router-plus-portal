@@ -79,7 +79,7 @@ a:visited {
 
     <h2>Info</h2>
     <ul>
-    <li>Version: @WIFIDOG_VERSION@
+    <li>Version: @router-plus-portal_VERSION@
 
     <li>Node ID: $nodeID
     </ul>
@@ -87,9 +87,9 @@ a:visited {
 
     <h2>Menu</h2>
     <ul>
-    <li><a href='/wifidog/status'>WiFiDog Status</a>
-    <li><a href='/wifidog/about'>About WiFiDog</a>
-    <li><a href='http://www.wifidog.org'>WiFiDog's homepage</a>
+    <li><a href='/router-plus-portal/status'>router-plus-portal Status</a>
+    <li><a href='/router-plus-portal/about'>About router-plus-portal</a>
+    <li><a href='http://www.router-plus-portal.org'>router-plus-portal's homepage</a>
     </ul>
 </div>
 

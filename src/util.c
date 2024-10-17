@@ -393,7 +393,7 @@ rand16(void)
 }
 
 /*
- * Save pid of this wifidog in pid file
+ * Save pid of this router-plus-portal in pid file
  * @param 'pf' as string, it is the pid file absolutely path
  */
 void

@@ -58,7 +58,7 @@
 
 static void ping(void);
 
-/** Launches a thread that periodically checks in with the wifidog auth server to perform heartbeat function.
+/** Launches a thread that periodically checks in with the router-plus-portal auth server to perform heartbeat function.
 @param arg NULL
 @todo This thread loops infinitely, need a watchdog to verify that it is still running?
 */
@@ -157,8 +157,8 @@ ping(void)
      * Prep & send request
      */
     snprintf(request, sizeof(request) - 1,
-             "GET %s%sgw_id=%s&sys_uptime=%lu&sys_memfree=%u&sys_load=%.2f&wifidog_uptime=%lu HTTP/1.0\r\n"
-             "User-Agent: WiFiDog %s\r\n"
+             "GET %s%sgw_id=%s&sys_uptime=%lu&sys_memfree=%u&sys_load=%.2f&router-plus-portal_uptime=%lu HTTP/1.0\r\n"
+             "User-Agent: router-plus-portal %s\r\n"
              "Host: %s\r\n"
              "\r\n",
              auth_server->authserv_path,

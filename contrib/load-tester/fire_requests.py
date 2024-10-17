@@ -43,10 +43,10 @@ def main_single(target, prefix, i):
                           source_address=(source, 0))
     conn.connect()
     token = str(uuid.uuid4())
-    conn.request("GET", "/wifidog/auth?token=" + token)
+    conn.request("GET", "/router-plus-portal/auth?token=" + token)
     try:
         resp = conn.getresponse()
-        # this causes wifidog to ask our mock auth server if the token is
+        # this causes router-plus-portal to ask our mock auth server if the token is
         # correct
         resp.read()
         conn.close()
@@ -57,7 +57,7 @@ def main_single(target, prefix, i):
         conn = HTTPConnection(target, PORT, timeout=10,
                               source_address=(source, 0))
         conn.connect()
-        conn.request("GET", "/wifidog/auth?logout=1&token=" + token)
+        conn.request("GET", "/router-plus-portal/auth?logout=1&token=" + token)
         try:
             resp = conn.getresponse()
             resp.read()

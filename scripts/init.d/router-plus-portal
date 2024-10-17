@@ -6,8 +6,8 @@
 #
 # chkconfig: 345 65 35
 #
-# description: Startup/shutdown script for Wifidog captive portal
-# processname: wifidog
+# description: Startup/shutdown script for router-plus-portal captive portal
+# processname: router-plus-portal
 
 # Date    : 2004-08-25
 # Version : 1.0
@@ -18,17 +18,17 @@ OPTIONS=""
 
 case "$1" in
   start)
-    echo "Starting Wifidog ... "
+    echo "Starting router-plus-portal ... "
     if $WD_DIR/wdctl status 2> /dev/null
     then
-	echo "FAILED:  Wifidog already running"
+	echo "FAILED:  router-plus-portal already running"
     else
         $0 test-module
-	if $WD_DIR/wifidog $OPTIONS
+	if $WD_DIR/router-plus-portal $OPTIONS
 	then
 		echo "OK"
 	else
-		echo "FAILED:  Wifidog exited with non 0 status"
+		echo "FAILED:  router-plus-portal exited with non 0 status"
 	fi
     fi
     ;;
@@ -43,7 +43,7 @@ case "$1" in
     $0 start
     ;;
   stop)
-    echo "Stopping Wifidog ... "
+    echo "Stopping router-plus-portal ... "
     if $WD_DIR/wdctl status 2> /dev/null
     then
        	if $WD_DIR/wdctl stop
@@ -54,7 +54,7 @@ case "$1" in
 	fi
        
     else
-       echo "FAILED:  Wifidog was not running"
+       echo "FAILED:  router-plus-portal was not running"
     fi
     ;;
   status)

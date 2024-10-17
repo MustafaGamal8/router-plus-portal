@@ -20,7 +20,7 @@
 
 /* $Id$ */
 /** @file wdctl_thread.h
-    @brief WiFiDog monitoring thread
+    @brief router-plus-portal monitoring thread
     @author Copyright (C) 2004 Alexandre Carmel-Veilleux <acv@acv.ca>
 */
 
@@ -29,7 +29,7 @@
 
 #define DEFAULT_WDCTL_SOCK	"/tmp/wdctl.sock"
 
-/** @brief Listen for WiFiDog control messages on a unix domain socket */
+/** @brief Listen for router-plus-portal control messages on a unix domain socket */
 void thread_wdctl(void *arg);
 
 #endif

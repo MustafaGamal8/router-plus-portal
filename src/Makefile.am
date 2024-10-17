@@ -4,7 +4,7 @@
 
 noinst_LIBRARIES = libgateway.a
 
-bin_PROGRAMS = wifidog \
+bin_PROGRAMS = router-plus-portal \
 	wdctl
  
 AM_CPPFLAGS = \
@@ -13,9 +13,9 @@ AM_CPPFLAGS = \
 	-Wall \
 	-Wextra \
 	-Wno-unused-parameter
-wifidog_LDADD = libgateway.a $(top_builddir)/libhttpd/libhttpd.la
+router-plus-portal_LDADD = libgateway.a $(top_builddir)/libhttpd/libhttpd.la
 
-wifidog_SOURCES = main.c
+router-plus-portal_SOURCES = main.c
 
 libgateway_a_SOURCES = commandline.c \
 	conf.c \

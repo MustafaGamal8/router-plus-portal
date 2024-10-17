@@ -3,13 +3,13 @@
 START=50
 
 start() {
-	/usr/bin/wifidog-init start
+	/usr/bin/router-plus-portal-init start
 }
 
 stop() {
-	/usr/bin/wifidog-init stop
+	/usr/bin/router-plus-portal-init stop
 }
 
 status() {
-	/usr/bin/wifidog-init status
+	/usr/bin/router-plus-portal-init status
 }

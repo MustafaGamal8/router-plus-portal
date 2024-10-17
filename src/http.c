@@ -195,7 +195,7 @@ http_callback_404(httpd * webserver, request * r, int error_code)
                     return;
                 }
             } else {
-                // e.g. "example.com" is in conf, so it had been parse to IP and added into "iptables allow" when wifidog start. but then its' A record(IP) changed, it will go to here.
+                // e.g. "example.com" is in conf, so it had been parse to IP and added into "iptables allow" when router-plus-portal start. but then its' A record(IP) changed, it will go to here.
                 debug(LOG_INFO, "allow domain again, because IP changed");
                 fw_allow_host(r->request.host);
                 http_send_redirect(r, tmp_url, "allow domain");
@@ -213,15 +213,15 @@ http_callback_404(httpd * webserver, request * r, int error_code)
 }
 
 void
-http_callback_wifidog(httpd * webserver, request * r)
+http_callback_router-plus-portal(httpd * webserver, request * r)
 {
-    send_http_page(r, "WiFiDog", "Please use the menu to navigate the features of this WiFiDog installation.");
+    send_http_page(r, "router-plus-portal", "Please use the menu to navigate the features of this router-plus-portal installation.");
 }
 
 void
 http_callback_about(httpd * webserver, request * r)
 {
-    send_http_page(r, "About WiFiDog", "This is WiFiDog version <strong>" VERSION "</strong>");
+    send_http_page(r, "About router-plus-portal", "This is router-plus-portal version <strong>" VERSION "</strong>");
 }
 
 void
@@ -241,7 +241,7 @@ http_callback_status(httpd * webserver, request * r)
 
     status = get_status_text();
     safe_asprintf(&buf, "<pre>%s</pre>", status);
-    send_http_page(r, "WiFiDog Status", buf);
+    send_http_page(r, "router-plus-portal Status", buf);
     free(buf);
     free(status);
 }
@@ -308,7 +308,7 @@ http_callback_auth(httpd * webserver, request * r)
         if (!(mac = arp_get(r->clientAddr))) {
             /* We could not get their MAC address */
             debug(LOG_ERR, "Failed to retrieve MAC address for ip %s", r->clientAddr);
-            send_http_page(r, "WiFiDog Error", "Failed to retrieve your MAC address");
+            send_http_page(r, "router-plus-portal Error", "Failed to retrieve your MAC address");
         } else {
             /* We have their MAC address */
             LOCK_CLIENT_LIST();
@@ -330,7 +330,7 @@ http_callback_auth(httpd * webserver, request * r)
         }
     } else {
         /* They did not supply variable "token" */
-        send_http_page(r, "WiFiDog error", "Invalid token");
+        send_http_page(r, "router-plus-portal error", "Invalid token");
     }
 }
 

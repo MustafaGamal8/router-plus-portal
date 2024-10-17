@@ -20,7 +20,7 @@
 
 /* $Id$ */
 /** @file wdctl_thread.c
-    @brief Monitoring and control of wifidog, server part
+    @brief Monitoring and control of router-plus-portal, server part
     @author Copyright (C) 2004 Alexandre Carmel-Veilleux <acv@acv.ca>
 */
 

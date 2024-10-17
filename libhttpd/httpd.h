@@ -94,7 +94,7 @@ extern "C" {
 
     typedef struct {
         int method, contentLength, authLength;
-        char path[HTTP_MAX_URL], query[HTTP_MAX_URL], host[HTTP_MAX_URL],       /* acv@acv.ca/wifidog: Added decoding
+        char path[HTTP_MAX_URL], query[HTTP_MAX_URL], host[HTTP_MAX_URL],       /* acv@acv.ca/router-plus-portal: Added decoding
                                                                                    of host: header if present. */
          ifModified[HTTP_MAX_URL];
         char authUser[HTTP_MAX_AUTH];

@@ -18,6 +18,6 @@
 **
 */
 
-char    LIBHTTPD_VERSION[] =  "1.4-wifidog",
+char    LIBHTTPD_VERSION[] =  "1.4-router-plus-portal",
         LIBHTTPD_VENDOR[] =   "Hughes Technologies Pty Ltd";
 

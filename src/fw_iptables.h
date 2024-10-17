@@ -33,7 +33,7 @@
 #define CHAIN_NAME_MAX_LEN 15  /* 28 (actual max) - 13 (AuthServers chain fixed part. */
 
 /*@{*/
-/**Iptable chain names used by WifiDog */
+/**Iptable chain names used by router-plus-portal */
 #define CHAIN_OUTGOING  "WD_$ID$_Outgoing"
 #define CHAIN_TO_INTERNET "WD_$ID$_Internet"
 #define CHAIN_TO_ROUTER "WD_$ID$_Router"

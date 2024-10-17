@@ -357,7 +357,7 @@ main_loop(void)
     request *r;
     void **params;
 
-    /* Set the time when wifidog started */
+    /* Set the time when router-plus-portal started */
     if (!started_time) {
         debug(LOG_INFO, "Setting started_time");
         started_time = time(NULL);
@@ -400,16 +400,16 @@ main_loop(void)
     register_fd_cleanup_on_fork(webserver->serverSock);
 
     debug(LOG_DEBUG, "Assigning callbacks to web server");
-    httpdAddCContent(webserver, "/", "wifidog", 0, NULL, http_callback_wifidog);
-    httpdAddCContent(webserver, "/wifidog", "", 0, NULL, http_callback_wifidog);
-    httpdAddCContent(webserver, "/wifidog", "about", 0, NULL, http_callback_about);
-    httpdAddCContent(webserver, "/wifidog", "status", 0, NULL, http_callback_status);
-    httpdAddCContent(webserver, "/wifidog", "auth", 0, NULL, http_callback_auth);
-    httpdAddCContent(webserver, "/wifidog", "disconnect", 0, NULL, http_callback_disconnect);
+    httpdAddCContent(webserver, "/", "router-plus-portal", 0, NULL, http_callback_router-plus-portal);
+    httpdAddCContent(webserver, "/router-plus-portal", "", 0, NULL, http_callback_router-plus-portal);
+    httpdAddCContent(webserver, "/router-plus-portal", "about", 0, NULL, http_callback_about);
+    httpdAddCContent(webserver, "/router-plus-portal", "status", 0, NULL, http_callback_status);
+    httpdAddCContent(webserver, "/router-plus-portal", "auth", 0, NULL, http_callback_auth);
+    httpdAddCContent(webserver, "/router-plus-portal", "disconnect", 0, NULL, http_callback_disconnect);
 
     httpdSetErrorFunction(webserver, 404, http_callback_404);
 
-    /* Reset the firewall (if WiFiDog crashed) */
+    /* Reset the firewall (if router-plus-portal crashed) */
     fw_destroy();
     /* Then initialize it */
     if (!fw_init()) {

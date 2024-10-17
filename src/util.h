@@ -58,7 +58,7 @@ void close_icmp_socket(void);
 /** @brief ICMP Ping an IP */
 void icmp_ping(const char *);
 
-/** @brief Save pid of this wifidog in pid file */
+/** @brief Save pid of this router-plus-portal in pid file */
 void save_pid_file(const char *);
 
 #endif                          /* _UTIL_H_ */

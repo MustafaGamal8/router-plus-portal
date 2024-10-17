@@ -32,7 +32,7 @@
 /**@brief Callback for libhttpd, main entry point for captive portal */
 void http_callback_404(httpd *, request *, int);
 /**@brief Callback for libhttpd */
-void http_callback_wifidog(httpd *, request *);
+void http_callback_router-plus-portal(httpd *, request *);
 /**@brief Callback for libhttpd */
 void http_callback_about(httpd *, request *);
 /**@brief Callback for libhttpd */

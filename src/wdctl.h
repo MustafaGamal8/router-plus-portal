@@ -20,7 +20,7 @@
 
 /* $Id$ */
 /** @file wdctl.h
-    @brief WiFiDog monitoring client
+    @brief router-plus-portal monitoring client
     @author Copyright (C) 2004 Alexandre Carmel-Veilleux <acv@acv.ca>
 */
 
