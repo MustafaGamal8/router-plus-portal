@@ -63,89 +63,73 @@
 @param incoming Current counter of the client's total incoming traffic, in bytes 
 @param outgoing Current counter of the client's total outgoing traffic, in bytes 
 */
-t_authcode
-auth_server_request(t_authresponse * authresponse, const char *request_type, const char *ip, const char *mac,
-                    const char *token, unsigned long long int incoming, unsigned long long int outgoing, unsigned long long int incoming_delta, unsigned long long int outgoing_delta)
+
+#include <json-c/json.h>  // Make sure to link against json-c for JSON parsing
+
+#define MAX_BUF 4096
+
+t_authcode auth_server_request(t_authresponse *authresponse, const char *request_type, const char *batch_request_data)
 {
     s_config *config = config_get_config();
     int sockfd;
     char buf[MAX_BUF];
-    char *tmp;
-    char *safe_token;
-    t_auth_serv *auth_server = NULL;
-    auth_server = get_auth_server();
+    t_auth_serv *auth_server = get_auth_server();
 
-    /* Blanket default is error. */
+    // Default response
     authresponse->authcode = AUTH_ERROR;
 
     sockfd = connect_auth_server();
 
-        /**
-	 * TODO: XXX change the PHP so we can harmonize stage as request_type
-	 * everywhere.
-	 */
-    memset(buf, 0, sizeof(buf));
-    safe_token = httpdUrlEncode(token);
-    if(config -> deltatraffic) {
-           snprintf(buf, (sizeof(buf) - 1),
-             "GET %s%sstage=%s&ip=%s&mac=%s&token=%s&incoming=%llu&outgoing=%llu&incomingdelta=%llu&outgoingdelta=%llu&gw_id=%s HTTP/1.0\r\n"
+    // Construct the batch request
+    snprintf(buf, sizeof(buf),
+             "GET %s%sstage=%s%s&gw_id=%s HTTP/1.0\r\n"
              "User-Agent: wifidog %s\r\n"
              "Host: %s\r\n"
              "\r\n",
              auth_server->authserv_path,
              auth_server->authserv_auth_script_path_fragment,
              request_type,
-             ip, mac, safe_token, 
-             incoming, 
-             outgoing, 
-             incoming_delta, 
-             outgoing_delta,
+             batch_request_data,  // All client data
              config->gw_id, VERSION, auth_server->authserv_hostname);
-    } else {
-            snprintf(buf, (sizeof(buf) - 1),
-             "GET %s%sstage=%s&ip=%s&mac=%s&token=%s&incoming=%llu&outgoing=%llu&gw_id=%s HTTP/1.0\r\n"
-             "User-Agent: wifidog %s\r\n"
-             "Host: %s\r\n"
-             "\r\n",
-             auth_server->authserv_path,
-             auth_server->authserv_auth_script_path_fragment,
-             request_type,
-             ip,
-             mac, safe_token, incoming, outgoing, config->gw_id, VERSION, auth_server->authserv_hostname);
-        }
-    free(safe_token);
 
-    char *res;
-#ifdef USE_CYASSL
-    if (auth_server->authserv_use_ssl) {
-        res = https_get(sockfd, buf, auth_server->authserv_hostname);
-    } else {
-        res = http_get(sockfd, buf);
-    }
-#endif
-#ifndef USE_CYASSL
-    res = http_get(sockfd, buf);
-#endif
+    // Send the batch request
+    char *res = http_get(sockfd, buf);
+
     if (NULL == res) {
         debug(LOG_ERR, "There was a problem talking to the auth server!");
-        return (AUTH_ERROR);
+        return AUTH_ERROR;
     }
 
-    if ((tmp = strstr(res, "Auth: "))) {
-        if (sscanf(tmp, "Auth: %d", (int *)&authresponse->authcode) == 1) {
-            debug(LOG_INFO, "Auth server returned authentication code %d", authresponse->authcode);
-            free(res);
-            return (authresponse->authcode);
-        } else {
-            debug(LOG_WARNING, "Auth server did not return expected authentication code");
-            free(res);
-            return (AUTH_ERROR);
-        }
-    }
+    // Parse the server response - expects JSON like: [{client_id:1,auth_code:1},{client_id:2,auth_code:2}]
+    parse_auth_response(res, authresponse);
+
     free(res);
-    return (AUTH_ERROR);
+    return authresponse->authcode;
 }
 
+void parse_auth_response(char *response, t_authresponse *authresponse)
+{
+    json_object *parsed_json;
+    json_object *client_id_obj;
+    json_object *auth_code_obj;
+
+    parsed_json = json_tokener_parse(response);
+
+    authresponse->num_clients = json_object_array_length(parsed_json);
+    authresponse->clients = malloc(authresponse->num_clients * sizeof(t_client_response));
+
+    for (int i = 0; i < authresponse->num_clients; i++) {
+        json_object *client = json_object_array_get_idx(parsed_json, i);
+
+        json_object_object_get_ex(client, "client_id", &client_id_obj);
+        json_object_object_get_ex(client, "auth_code", &auth_code_obj);
+
+        authresponse->clients[i].client_id = json_object_get_int(client_id_obj);
+        authresponse->clients[i].auth_code = json_object_get_int(auth_code_obj);
+    }
+
+    json_object_put(parsed_json); // Free the parsed JSON object
+}
 /* Tries really hard to connect to an auth server. Returns a file descriptor, -1 on error
  */
 int
